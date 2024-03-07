@@ -1,0 +1,56 @@
+Step 1:
+npm init
+
+Step 2:
+npm install cypress --save-dev
+
+Step 3:
+Install cucumber Install below two plugins
+Usar los dos!
+
+-> npm install -save-dev cypress-cucumber-preprocessor
+
+-> npm i -D cypress cypress-cucumber-preprocessor
+
+Step 4:
+open cypress
+npx cypress open
+
+Step 5:
+open cypress.config.js
+
+const cucumber = require('cypress-cucumber-preprocessor').default 
+const { defineConfig } = require("cypress");
+
+module.exports = defineConfig({
+   e2e: {
+     setupNodeEvents(on, config) {
+      on('file:preprocessor', cucumber())
+     },
+      specPattern: "cypress/e2e/*.feature",
+    },
+  });
+
+Step 6:
+open package.js past last 
+"cypress-cucumber-preprocessor": {
+     "nonGlobalStepDefinitions": true,
+      "step_definitions": "cypress/e2e/mytest"
+     }
+
+Step 7:
+Creamos una carpeta que se llame mytest en e2e
+Luego creamos un archivo llamado mytest.feature -> el nombre debe ser igual.
+Luego dentro de mytest folder, creamos un archivo mytest.js
+
+Step 8:
+En mytest.feature escribimos la sintaxis gerkins
+
+Step 9:
+importamos la sintaxis al archivo .js
+import {Given, When, Then} from "cypress-cucumber-preprocessor/steps";
+
+step 10: run and check.
+------------------------
+
+
